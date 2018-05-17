@@ -1,0 +1,72 @@
+
+o This file contains steps for building toolchain and building the image.
+
+Procedure:
+1) It must be in normal user mode.
+2) Install fakeroot before building GPL code.
+
+3) Building the toolchain
+ ~# ./build_tool_chain.sh
+
+   Please choose the "Target Ptocessor Architecture" as "MIPS32 (CONFIG_MIPS_ISA_MIPS32)",
+   and keep other settings as the default value.
+
+        *
+        * Target Architecture Features and Options
+        *
+        Target Processor Architecture
+          1. Generic (MIPS I) (CONFIG_MIPS_ISA_1) (NEW)
+          2. MIPS II (CONFIG_MIPS_ISA_2) (NEW)
+          3. MIPS III (CONFIG_MIPS_ISA_3) (NEW)
+          4. MIPS IV (CONFIG_MIPS_ISA_4) (NEW)
+        > 5. MIPS32 (CONFIG_MIPS_ISA_MIPS32) (NEW)
+          6. MIPS64 (CONFIG_MIPS_ISA_MIPS64) (NEW)
+        choice[1-6?]: 5
+        Target Processor Endianness
+        > 1. Little Endian (ARCH_LITTLE_ENDIAN)
+          2. Big Endian (ARCH_BIG_ENDIAN)
+        choice[1-2?]: 1
+        Target CPU has a memory management unit (MMU) (ARCH_HAS_MMU) [Y/n/?] (NEW)
+        Enable floating point number support (UCLIBC_HAS_FLOATS) [Y/n/?] y
+          Target CPU has a floating point unit (FPU) (HAS_FPU) [Y/n/?] (NEW)
+
+        *
+        * General Library Settings
+        *
+        Generate Position Independent Code (PIC) (DOPIC) [Y/n/?] y
+        Enable support for shared libraries (HAVE_SHARED) [Y/n/?] y
+        Compile native shared library loader (BUILD_UCLIBC_LDSO) [Y/n/?] (NEW)
+        *
+        * General Library Settings
+        *
+        Generate Position Independent Code (PIC) (DOPIC) [Y/n/?] y
+        Enable support for shared libraries (HAVE_SHARED) [Y/n/?] y
+        Compile native shared library loader (BUILD_UCLIBC_LDSO) [Y/n/?] (NEW)
+          Only load shared libraries which can share their text segment (FORCE_SHAREABLE_TEXT_SEGMENTS) [N/y/?] n
+          Native shared library loader 'ldd' support (LDSO_LDD_SUPPORT) [Y/n/?] y
+          Enable shared library loader cache (LDSO_CACHE_SUPPORT) [Y/n/?] y
+          Enable shared library loader preload file support (LDSO_PRELOAD_FILE_SUPPORT) [N/y/?] n
+            Shared library loader naming prefix (LDSO_BASE_FILENAME) [ld.so] ld.so
+          Enable ELF RUNPATH tag support (LDSO_RUNPATH) [N/y/?] n
+        uClibc 0.9.27 compatibility (DL_FINI_CRT_COMPAT) [N/y/?] (NEW)
+
+  After build toolchain successfully, you will get the prompt line,
+  "Use source ./setupenv to setup your environment variables !".
+  You can use the toolchain to build image now.
+
+
+4) Building the image
+ ~# source ./setupenv
+ ~# make
+ ~# make
+ ~# make
+     ===================================================
+	 You are going to build the f/w images.
+	 Both the release and tftp images will be generated.
+	 ===================================================
+	 Do you want to rebuild the linux kernel ? (yes/no) : yes
+
+   After make successfully, you will find the image file in ./images/.
+   
+   Upgrade the new firmware by web interface provide by device,
+   then you will get your specific image.
