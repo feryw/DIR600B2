@@ -1,0 +1,3 @@
+# alpha_3gtool
+
+psubdir-$(ELBOX_PROGS_PRIV_ALPHA_3GTOOL)	+= alpha_3gtool

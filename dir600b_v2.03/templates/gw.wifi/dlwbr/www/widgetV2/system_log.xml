@@ -1,0 +1,42 @@
+<?
+//+++alex     
+
+//$log_critical
+$log_system = get("x","/security/log/systeminfo");
+$log_debug = get("x","/security/log/debuginfo");
+
+//$log_firewall
+//$log_warning
+//$log_status
+//$log_syslog_enable
+//$log_syslog_server
+
+$log_email_enable = get("x","/sys/log/emailenable");
+$log_email_sender = get("x","/sys/log/sender");
+$log_email_recipient = get("x","/sys/log/email");
+$log_email_server = get("x","/sys/log/mailserver");
+$log_email_username = get("x","/sys/log/username");
+$log_email_password = get("x","/sys/log/pass1");
+
+
+
+
+echo	"<system_log>";    
+	echo	"<log_critical>".$log_critical."</log_critical>";
+	echo	"<log_system>".$log_system."</log_system>";	
+	echo	"<log_debug>".$log_debug."</log_debug>";	
+	echo	"<log_firewall>".$log_firewall."</log_firewall>";	
+	echo	"<log_warning>".$log_warning."</log_warning>";	
+	echo	"<log_status>".$log_status."</log_status>";	
+	echo	"<log_syslog_enable>".$log_syslog_enable."</log_syslog_enable>";	
+	echo	"<log_syslog_server>".$log_syslog_server."</log_syslog_server>";	
+	echo	"<log_email_enable>".$log_email_enable."</log_email_enable>";	
+	echo	"<log_email_sender>".$log_email_sender."</log_email_sender>";	
+	echo	"<log_email_recipient>".$log_email_recipient."</log_email_recipient>";	
+	echo	"<log_email_server>".$log_email_server."</log_email_server>";	
+	echo	"<log_email_username>".$log_email_username."</log_email_username>";	
+	echo	"<log_email_password>".$log_email_password."</log_email_password>";	
+echo	"</system_log>";
+
+//---alex
+?>

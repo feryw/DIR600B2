@@ -1,0 +1,53 @@
+<?
+/*   alex
+ (we have no these tags in rgdb)
+	$kinds 
+	$last_host_registered 
+	$last_ip_registered     
+	$last_server_registered 
+	$timeout         
+	$status     字串內容與SPEC不符  
+
+*/
+
+
+
+//+++alex     
+
+	$enable = get("x","/ddns/enable");
+	$hostname = get("x","/ddns/hostname");
+	$username = get("x","/ddns/user");
+	$password = get("x","/ddns/password");
+
+
+//	$kinds 
+//	$last_host_registered 
+//	$last_ip_registered 
+//	$last_server_registered 
+//	$timeout 
+//  $$status
+
+
+
+echo	"<ddns>";    
+	echo	"<enable>".$enable."</enable>";
+	echo	"<hostname>".$hostname."</hostname>";	
+	echo	"<server>";
+			map("/ddns/provider",
+                "1","DynDns.org",
+                "13","DynDns.org",
+                "14","dlinkddns.com"
+                );
+	echo	"</server>";	
+	echo	"<username>".$username."</username>";	
+	echo	"<password>".$password."</password>";
+	echo	"<kinds>".$kinds."</kinds>";
+	echo	"<last_host_registered>".$last_host_registered."</last_host_registered>";
+	echo	"<last_ip_registered>".$last_ip_registered."</last_ip_registered>";
+	echo	"<last_server_registered>".$last_server_registered."</last_server_registered>";
+	echo	"<timeout>".$timeout."</timeout>";
+	echo	"<status>".$status."</status>";		
+echo	"</ddns>";
+
+//---alex
+?>

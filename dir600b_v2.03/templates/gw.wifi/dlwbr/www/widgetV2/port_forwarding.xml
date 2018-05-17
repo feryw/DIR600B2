@@ -1,0 +1,48 @@
+<?
+//+++alex     
+
+
+for("/nat/vrtsrv/entry")
+{
+	if(get("x","enable") == "1")
+	{
+		
+		$ex_port_range = get("x","external/startport")."-".get("x","external/endport");
+		$inter_port_range = get("x","internal/startport")."-".get("x","internal/endport");
+		if(get("x","protocol") == "1" )
+		{
+			$tcp_port = $ex_port_range.",".$inter_port_range;
+			$udp_port = "";
+		}
+		else if (get("x","protocol") == "2" )
+		{
+			$tcp_port = "";
+			$udp_port = $ex_port_range.",".$inter_port_range;
+		}
+		else 
+		{
+			$tcp_port = $ex_port_range.",".$inter_port_range;
+			$udp_port = $ex_port_range.",".$inter_port_range;
+		}
+    }
+    else
+    {
+        $schedule_name = "";
+    	$tcp_port = "";
+    	$udp_port = "";
+    }
+    
+    
+
+	echo	"<port_forward_entry_".$@.">";
+		echo	"<enable>".get("x","enable")."</enable>";
+		echo	"<name>".get("x","description")."</name>";
+		echo	"<tcp_port>".$tcp_port."</tcp_port>";
+		echo	"<udp_port>".$udp_port."</udp_port>";
+		echo	"<ip>".get("x","internal/ip")."</ip>";
+		echo	"<schedule_name></schedule_name>";    // no this tag in the rgdb 
+	echo	"</port_forward_entry_".$@.">";
+}
+
+//---alex
+?>

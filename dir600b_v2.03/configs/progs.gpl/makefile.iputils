@@ -1,0 +1,3 @@
+# iputils
+
+gsubdir-$(ELBOX_PROGS_GPL_IPUTILS)	+= iputils

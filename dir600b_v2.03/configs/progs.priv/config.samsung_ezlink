@@ -1,0 +1,68 @@
+# samsung_ezlink
+
+config ELBOX_SAMSUNG_EZLINK
+	bool "Samsung Easy Link"
+	default n
+	help
+		Samsung easy link with Ralink's solution.
+
+config ELBOX_SAMSUNG_EZLINK_RT3883_WIFI
+	depends ELBOX_SAMSUNG_EZLINK
+	bool "Ralink RT3883 driver"
+	default n
+	help
+		RT3883 driver is based on RT2860v2.
+
+choice
+	prompt "Select Version"
+	depends ELBOX_SAMSUNG_EZLINK_RT3883_WIFI
+	default ELBOX_PROGS_PRIV_SAMSUNG_EZLINK_RT3883_WIFI_SDK333X_V2300_DPA
+	help
+		Select the verison of RT3883 driver (based on RT2860v2).
+
+	# rt2860v2 SDK3.3.3.7 V2.3.0.0
+	config ELBOX_PROGS_PRIV_SAMSUNG_EZLINK_RT3883_WIFI_SDK333X_V2300_DPA
+		bool "rt2860v2_dpa_20100125.tar.bz2"
+		help
+			This version is for SDK 3.3.3.X(unknown) V2.3.0.0.
+			The source tar ball is rt2860v2_dpa_20100125.tar.bz2.
+
+	# rt2860v2 SDK3.3.3.7 V2.3.0.0
+	config ELBOX_PROGS_PRIV_SAMSUNG_EZLINK_RT3883_WIFI_SDK3337_V2300
+		bool "rt2860v2_rt3883_alpha_sdk3337_all_dpa_20100118.tar.bz2"
+		help
+			This version is for SDK 3.3.3.7 V2.3.0.0.
+			The source tar ball is rt2860v2_rt3883_alpha_sdk3337_all_dpa_20100118.tar.bz2
+
+	# rt2860v2 SDK3.3.3.0 V2.3.0.0
+	config ELBOX_PROGS_PRIV_SAMSUNG_EZLINK_RT3883_WIFI_SDK3330_V2300
+		bool "rt3883_SDK3330_V2300_rt2860v2_20091231.tar.bz2"
+		help
+			This version is for SDK 3.3.3.0 V2.3.0.0.
+			The source tar ball is rt3883_SDK3330_V2300_rt2860v2_20091231.tar.bz2
+endchoice
+
+config ELBOX_PROGS_PRIV_SAMSUNG_EZLINK_RT3883_WIFI_USE_RT2860APD
+	bool "Use Ralink's own WPA/WPA2 enterprise or pure 802.1X(rt2860apd)"
+	depends ELBOX_SAMSUNG_EZLINK_RT3883_WIFI
+	default n
+	help
+		If you want to use Ralink's own WPA/WPA2 enterprise or pure 802.1X, 
+		you need this daemon, rt2860apd, to handle IEEE 802.1x.
+		We usually use Alpha's own daemon, hostapd, in elbox/progs.priv/wpstools/..
+
+config ELBOX_PROGS_PRIV_SAMSUNG_EZLINK_RT3883_WIFI_USE_WSC_UPNP
+	bool "Use Ralink's own UPnP for WFA device.(wscd)"
+	depends ELBOX_SAMSUNG_EZLINK_RT3883_WIFI
+	default n
+	help
+		If you want to use Ralink's own WPS, you need this daemon, wscd, for WFA device.
+		We usually use Alpha's own UPnP, wfadev & wfanotify, in elbox/progs.priv/cgibin.aries.
+
+config ELBOX_PROGS_PRIV_SAMSUNG_EZLINK_RT3883_WIFI_USE_RT3090
+	bool "Daul-band with RT3090"
+	depends ELBOX_SAMSUNG_EZLINK_RT3883_WIFI
+	default n
+	help
+		Use RT3090 to be 11G, and RT3883 to be 11A.
+

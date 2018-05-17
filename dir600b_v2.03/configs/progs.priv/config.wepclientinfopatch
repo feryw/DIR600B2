@@ -1,0 +1,9 @@
+#
+# wepclientinfopatch
+#
+
+config ELBOX_PROGS_PRIV_WEPCLIENTINFOPATCH
+	bool "Wepclientinfopatch"
+	default n
+	help
+		In WEP mode that client information must in 11G band.

@@ -1,0 +1,9 @@
+#
+# webredirect
+#
+
+config ELBOX_PROGS_PRIV_WEBREDIRECT
+	bool "Webredirect"
+	default n
+	help
+		IGMP snooping demon , created by alpha

@@ -1,0 +1,69 @@
+#
+#  iputils
+#
+config ELBOX_PROGS_GPL_IPUTILS
+	bool "iputils"
+	default n
+	help
+		The iputils package is set of small useful utilities for Linux networking.
+		It was originally maintained by Alexey Kuznetsov. 
+		Maintainer
+			YOSHIFUJI Hideaki / USAGI/WIDE Project
+menu "iputils configuration"
+        depends ELBOX_PROGS_GPL_IPUTILS
+
+        config ELBOX_PROGS_GPL_IPUTILS_TRACEPATH
+                bool "tracepath"
+                default n
+                help
+					tracepath
+
+        config ELBOX_PROGS_GPL_IPUTILS_PING
+                bool "ping"
+                default n
+                help
+					ping
+
+        config ELBOX_PROGS_GPL_IPUTILS_CLOCKDIFF
+                bool "clockdiff"
+                default n
+                help
+					clockdiff
+
+        config ELBOX_PROGS_GPL_IPUTILS_RDISC
+                bool "rdisc"
+                default n
+                help
+					rdisc
+
+        config ELBOX_PROGS_GPL_IPUTILS_ARPING
+                bool "arping"
+                default n
+                help
+					arping
+
+        config ELBOX_PROGS_GPL_IPUTILS_TFTPD
+                bool "tftpd"
+                default n
+                help
+					tftpd
+
+        config ELBOX_PROGS_GPL_IPUTILS_TRACEPATH6
+                bool "tracepath6"
+                default n
+                help
+					tracepath6
+
+        config ELBOX_PROGS_GPL_IPUTILS_TRACEROUTE6
+                bool "traceroute6"
+                default n
+                help
+					traceroute6
+
+        config ELBOX_PROGS_GPL_IPUTILS_PING6
+                bool "ping6"
+                default n
+                help
+					ping6	
+
+endmenu

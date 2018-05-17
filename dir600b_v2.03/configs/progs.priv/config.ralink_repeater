@@ -1,0 +1,7 @@
+#
+#ralink_repeater
+#
+
+config ELBOX_PROGS_PRIV_RALINK_REPEATER
+	bool "Ralink Repeater mode."
+	default n

@@ -1,0 +1,34 @@
+#
+# USB over IP
+#
+
+config ELBOX_PROGS_PRIV_USBOVERIP
+	bool "USB over IP"
+	default n
+	help
+		USB over IP
+
+choice
+	prompt "Select third party software"
+	depends ELBOX_PROGS_PRIV_USBOVERIP
+	help
+		Select third party software
+
+	#
+	# silex
+	#
+	config ELBOX_PROGS_PRIV_USBOVERIP_SILEX
+		bool "Silex"
+
+	#
+	# kcode
+	#
+	#config ELBOX_PROGS_PRIV_USBOVERIP_KCODE
+	#	bool "kcode"
+
+	#
+	# others
+	#
+
+endchoice
+

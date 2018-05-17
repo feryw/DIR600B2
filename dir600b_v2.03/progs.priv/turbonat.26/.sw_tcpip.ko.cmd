@@ -1,0 +1,1 @@
+cmd_/home/kwest/release.GPL/dir600b_v2.03/progs.priv/turbonat.26/sw_tcpip.ko := mipsel-linux-ld  -m elf32ltsmip -r -o /home/kwest/release.GPL/dir600b_v2.03/progs.priv/turbonat.26/sw_tcpip.ko /home/kwest/release.GPL/dir600b_v2.03/progs.priv/turbonat.26/sw_tcpip.o /home/kwest/release.GPL/dir600b_v2.03/progs.priv/turbonat.26/sw_tcpip.mod.o

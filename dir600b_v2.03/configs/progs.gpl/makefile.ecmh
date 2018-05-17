@@ -1,0 +1,3 @@
+# ecmh
+
+gsubdir-$(ELBOX_PROGS_GPL_ECMH)	+= ecmh

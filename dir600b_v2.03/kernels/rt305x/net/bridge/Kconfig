@@ -1,0 +1,91 @@
+#
+# 802.1d Ethernet Bridging
+#
+
+config BRIDGE
+	tristate "802.1d Ethernet Bridging"
+	select LLC
+	---help---
+	  If you say Y here, then your Linux box will be able to act as an
+	  Ethernet bridge, which means that the different Ethernet segments it
+	  is connected to will appear as one Ethernet to the participants.
+	  Several such bridges can work together to create even larger
+	  networks of Ethernets using the IEEE 802.1 spanning tree algorithm.
+	  As this is a standard, Linux bridges will cooperate properly with
+	  other third party bridge products.
+
+	  In order to use the Ethernet bridge, you'll need the bridge
+	  configuration tools; see <file:Documentation/networking/bridge.txt>
+	  for location. Please read the Bridge mini-HOWTO for more
+	  information.
+
+	  If you enable iptables support along with the bridge support then you
+	  turn your bridge into a bridging IP firewall.
+	  iptables will then see the IP packets being bridged, so you need to
+	  take this into account when setting up your firewall rules.
+	  Enabling arptables support when bridging will let arptables see
+	  bridged ARP traffic in the arptables FORWARD chain.
+
+	  To compile this code as a module, choose M here: the module
+	  will be called bridge.
+
+	  If unsure, say N.
+config BRIDGE_FORWARD_CTRL
+	bool "Forwarding Control"
+	depends on BRIDGE
+	---help---
+	  This option allows you to enable/disable the forward function of the kernel
+	  bridge module by proc_fs /proc/net/br_forward_br0.
+	  The default status is 1, indicates bridge forward enable.
+
+	  To disable the function just echo 0 to this node:
+	  echo 0 > /proc/net/br_forward_br0
+
+	  and echo 1 to re-enable it:
+	  echo 1 > /proc/net/br_forward_br0
+config BRIDGE_PORT_FORWARD
+	bool "Port forwarding Control"
+	depends on BRIDGE
+	---help---
+
+config BRIDGE_MULTICAST_BWCTRL
+	bool "Multicast packet bandwidth control"
+	depends on BRIDGE
+	---help---
+
+config BRIDGE_IGMPP_PROCFS
+	bool "Bridge with IGMPProxy procfs support"
+	depends on BRIDGE
+	---help---
+	  The original kernel bridge module will flooding multicast packet to each 
+	  interface (port list), this kind of phenomenon will cause bandwidth of wireless 
+	  interface(port) has to be fouled at basic rate and make other protocols/applications 
+	  that use basic rate can't work fine.
+
+	  If you say Y here,the bridge will transform multicast packet into unicast packet by
+	  replace multicast MAC address with each member's MAC address.
+
+config BRIDGE_IGMPP_PROCFS_DEBUG
+	bool "Bridge with IGMPProxy procfs debugging"
+	depends on BRIDGE_IGMPP_PROCFS
+	---help---
+
+config BRIDGE_IOAPNL
+	bool "IO-Data AP Network Limitation"
+	depends on BRIDGE
+	---help---
+
+config BRIDGE_MAT
+	bool "MAC address translator"
+	depends on BRIDGE
+	default n
+		---help---
+		MAT for AP client.
+
+config BRIDGE_MAC_CLONE
+	bool "MAC address clone"
+	depends on BRIDGE
+	default n
+		---help---
+		MAC clone for AP client
+

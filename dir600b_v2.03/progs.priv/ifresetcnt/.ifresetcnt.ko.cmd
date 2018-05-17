@@ -1,0 +1,1 @@
+cmd_/home/kwest/release.GPL/dir600b_v2.03/progs.priv/ifresetcnt/ifresetcnt.ko := mipsel-linux-ld  -m elf32ltsmip -r -o /home/kwest/release.GPL/dir600b_v2.03/progs.priv/ifresetcnt/ifresetcnt.ko /home/kwest/release.GPL/dir600b_v2.03/progs.priv/ifresetcnt/ifresetcnt.o /home/kwest/release.GPL/dir600b_v2.03/progs.priv/ifresetcnt/ifresetcnt.mod.o

@@ -1,0 +1,10 @@
+#
+# llmnresp
+#
+
+config ELBOX_PROGS_PRIV_LLMNRESP
+	bool "llmnresp: Link-local Multicast Name Resolution (LLMNR) Responder "
+	default n
+	help
+		Link-local Multicast Name Resolution (LLMNR) Responder.
+

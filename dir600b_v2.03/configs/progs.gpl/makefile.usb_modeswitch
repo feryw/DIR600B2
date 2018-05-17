@@ -1,0 +1,4 @@
+# udev
+
+gsubdir-$(ELBOX_PROGS_GPL_USB_MODESWITCH)	+= usb_modeswitch-0.9.5
+gsubdir-$(ELBOX_PROGS_GPL_USB_MODESWITCH_1_0_2)   += usb_modeswitch-1.0.2

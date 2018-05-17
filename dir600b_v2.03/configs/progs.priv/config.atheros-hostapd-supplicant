@@ -1,0 +1,17 @@
+config PROGS_PRIV_ATHEROS_SECURITY_VERSION
+	bool "ATHEROS_SECURITY_VERSION"
+	default n
+	help
+		Atheros hostapd and supplicant version.
+
+menu "VERSION CONTROL"
+	depends PROGS_PRIV_ATHEROS_SECURITY_VERSION
+
+	config ELBOX_PROGS_PRIV_0_5_9
+			bool "0_5_9"
+			default n
+			help
+				hostapd and supplicant version are 0.5.9
+
+endmenu
+

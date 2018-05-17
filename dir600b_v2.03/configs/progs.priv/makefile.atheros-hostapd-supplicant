@@ -1,0 +1,3 @@
+# atheros hostapd and supplicant version control
+#
+psubdir-$(PROGS_PRIV_ATHEROS_SECURITY_VERSION)    += atheros-hostapd-supplicant

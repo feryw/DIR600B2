@@ -1,0 +1,491 @@
+#
+
+config ELBOX_PROGS_PRIV_CALLMGR
+	bool "CALLMGR"
+	default n
+	
+menu "Call Manager configuration"
+	depends ELBOX_PROGS_PRIV_CALLMGR
+	
+choice
+	prompt "Library Type Selection"
+	default CONFIG_CALLMGR_SHARE_LIB
+	help
+		Select the library type
+
+	config CONFIG_CALLMGR_SHARE_LIB
+		bool "shared library"
+		help
+			Using shared library
+
+	config CONFIG_CALLMGR_STATIC_LIB
+		bool "static library"
+		help
+			Using static library
+endchoice
+
+menu "Libraries Selection"
+
+config CONFIG_CALLMGR_SYSTEM_LIB
+	bool "system library"
+	default y
+	help
+		Call manager system library
+
+config CONFIG_CALLMGR_TIMER_LIB
+	bool "timer library"
+	default y
+	help
+		Call manager timer library		
+endmenu
+
+choice
+	prompt "Config Source Selection"
+	default CONFIG_CALLMGR_CFG_HARDCODE
+	help
+		Select the library type
+
+	config CONFIG_CALLMGR_CFG_FROM_XML
+		bool "xml cfg"
+		help
+			Get the config from XML
+
+	config CONFIG_CALLMGR_CFG_HARDCODE
+		bool "hardcode cfg"
+		help
+			Get the config via hard coding
+endchoice
+
+#choice
+#	depends CONFIG_CALLMGR_CFG_FROM_XML
+#	prompt "Config Manager Library Type Selection"
+#	default CONFIG_CALLMGR_CONF_LIB_XMLDB
+#	help
+#		Select the library type
+#
+#	config CONFIG_CALLMGR_CONF_LIB_SYSMGMTD
+#		bool "sysmgmtd"
+#		help
+#			Using sysmgmtd library
+#
+#	config CONFIG_CALLMGR_CONF_LIB_XMLDB
+#		bool "xmldb"
+#		help
+#			Using xmldb library
+#endchoice
+
+#choice
+#	prompt "Endpoint Platform Selection"
+#	default CONFIG_CALLMGR_EPT_PLATFORM_PC
+#	help
+#		Select the endpoint platform
+#
+#	config CONFIG_CALLMGR_EPT_PLATFORM_PC
+#		bool "Endpoint platform for Linux PC"
+#		help
+#			Endpoint platform for Linux pc
+#
+#	config CONFIG_CALLMGR_EPT_PLATFORM_VMMC
+#		bool "Endpoint platform for VMMC"
+#		help
+#			Endpoint platform for VMMC
+#endchoice			
+
+menu "Endpoint Type Selection"
+
+config CONFIG_CALLMGR_EPT_TYPE_FXS
+	bool "Endpoint FXS"
+	default y
+	help
+		Call manager endpoint type FXS
+
+	menu "Endpoint FXS features setting"
+	depends CONFIG_CALLMGR_EPT_TYPE_FXS
+
+	config CONFIG_CALLMGR_EPT_FXS_LINE
+		string  "FXS Line Number Setting"
+		default "2"
+		help
+			FXS Line Number Setting, valid range 1~2
+
+	config CONFIG_CALLMGR_EPT_FXS_CW_TONE_REMOTE_NOTIFY
+		bool "FXS support call waiting tone remote notify"
+		default n
+		help
+			support call waiting tone remote notify
+
+	config CONFIG_CALLMGR_EPT_FXS_VOIP_OOS_TONE
+		bool "FXS support VoIP out of service tone"
+		default n
+		help
+			support voip out of service tone
+
+	config CONFIG_CALLMGR_EPT_FXS_POUND_KEY_FAST_DIAL
+		bool "FXS support pound key fast dial"
+		default y
+		help
+			support pound key fast dial
+
+	config CONFIG_CALLMGR_EPT_FXS_R_BUTTON
+		bool "FXS support r-button hook flash"
+		default n
+		help
+			support r-button hook flash
+
+	config CONFIG_CALLMGR_EPT_FXS_VMWI_NOTIFY
+		bool "FXS support VMWI notify"
+		default n
+		help
+			support VMWI notify
+	endmenu
+
+config CONFIG_CALLMGR_EPT_TYPE_FXO
+	bool "Endpoint FXO"
+	default n
+	help
+		Call manager endpoint type FXO
+
+	menu "Endpoint FXO features setting"
+	depends CONFIG_CALLMGR_EPT_TYPE_FXO
+
+	config CONFIG_CALLMGR_EPT_FXO_LINE
+		string  "FXO Line Number Setting"
+		default "1"
+		help
+			FXO Line Number Setting, valid range 1~2
+	endmenu
+
+config CONFIG_CALLMGR_EPT_TYPE_SIP
+	bool "Endpoint SIP"
+	default y
+	help
+		Call manager endpoint type SIP
+
+	menu "Endpoint SIP features setting"
+	depends CONFIG_CALLMGR_EPT_TYPE_SIP
+	
+	config CONFIG_CALLMGR_EPT_SIP_LINE
+		string "SIP Max Line Number Setting"
+		default "5"
+		help
+			SIP Max Line Number Setting, valid range 1~15
+
+	config CONFIG_CALLMGR_EPT_SIP_STUN_CLIENT
+		bool "SIP STUN CLIENT"
+		default y
+		help
+			SIP STUN CLIENT
+	
+	config CONFIG_CALLMGR_EPT_SIP_SRTP_WITH_MIKEY
+       bool "SRTP with MIKEY"
+        default n
+        help
+            Secure RTP with MIKEY
+
+	config CONFIG_CALLMGR_EPT_SIP_SRTP_WITH_RFC4568
+        bool "SRTP with RFC4568"
+        default n
+        help
+            Secure RTP with RFC4568
+
+	choice
+		prompt "SIP Server Type Selection"
+		default CONFIG_CALLMGR_EPT_SIP_SERVER_GENERIC
+		help
+			Select Customer's SIP Server
+
+		config CONFIG_CALLMGR_EPT_SIP_SERVER_TELTEL
+			bool "TELTET SIP Server"
+			help
+				TELTEL SIP Server
+
+		config CONFIG_CALLMGR_EPT_SIP_SERVER_GENERIC
+			bool "Generic SIP Server"
+			help
+				GENERIC SIP Server
+	endchoice
+
+	endmenu
+
+config CONFIG_CALLMGR_EPT_TYPE_IVR
+	bool "Endpoint IVR"
+	default n
+	help
+		Call manager endpoint type IVR
+				
+	menu "Endpoint IVR features setting"
+	depends CONFIG_CALLMGR_EPT_TYPE_IVR
+
+	config CONFIG_CALLMGR_EPT_IVR_VMAIL_CHECK_PASSWORD
+		bool "IVR check password"
+		default n
+		help
+			IVR check password before into voice menu
+
+	config CONFIG_CALLMGR_EPT_IVR_VMAIL_SECOND_DIAL
+		bool "IVR second dial"
+		default n
+		help
+			IVR second dial (Redial)
+		
+	config CONFIG_CALLMGR_EPT_IVR_VMAIL_LED
+    	bool "IVR Voice Mail LED to indicate that you have the new message"
+	    default n
+		help
+			light on LED to indicate that tyou have voice mail message
+	endmenu
+
+config CONFIG_CALLMGR_EPT_TYPE_ISDN
+	bool "Endpoint ISDN"
+	default n
+	help
+		Call manager endpoint type ISDN
+
+config CONFIG_CALLMGR_EPT_TYPE_DECT
+	bool "Endpoint DECT"
+	default n
+	help
+		Call manager endpoint type DECT
+	
+	menu "Endpoint DECT features setting"
+	depends CONFIG_CALLMGR_EPT_TYPE_DECT
+
+	config CONFIG_CALLMGR_EPT_DECT_LINE
+		string  "DECT Line Number Setting"
+		default "1"
+		help
+			DECT Line Number Setting, valid range 1~2
+	endmenu
+
+config CONFIG_CALLMGR_EPT_TYPE_MOBILE
+	bool "Endpoint MOBILE"
+	default n
+	help
+		Call manager endpoint type MOBILE
+
+endmenu
+
+choice
+	prompt "DSP Module Selection"
+	default CONFIG_CALLMGR_DSP_PC
+	help
+		Select the DSP module
+		
+	config CONFIG_CALLMGR_DSP_PC
+		bool "PC DSP simulator"
+		help
+			DSP simulator on PC
+		
+	config CONFIG_CALLMGR_DSP_VMMC
+		bool "VMMC DSP"
+		help
+			VMMC DSP
+			
+	config CONFIG_CALLMGR_DSP_DSPLESS
+		bool "DSPLess"
+		help
+			No DSP, SLIC only
+endchoice
+
+menu "  DSPLESS GPIO configuration"
+	depends CONFIG_CALLMGR_DSP_DSPLESS
+
+	config ELBOX_CALLMGR_SLIC_RESET_GPIO_NUM
+		depends on CONFIG_CALLMGR_DSP_DSPLESS
+		int "SLIC reset gpio number"
+		default 9
+		help
+			Set the SLIC reset GPIO number.
+
+	config ELBOX_CALLMGR_SLIC_INTERRUPT_GPIO_NUM
+		depends on CONFIG_CALLMGR_DSP_DSPLESS
+		int "SLIC interrupt gpio number"
+		default 0
+		help
+			Set the SLIC interrupt GPIO number.
+
+endmenu
+
+menu "Country tone selection"
+config CONFIG_CALLMGR_CTRY_AUSTRALIA
+	bool "Australia(AU)"
+	default n
+	help
+		support Australia country tone
+
+config CONFIG_CALLMGR_CTRY_BRAZIL
+	bool "Brazil(BR)"
+	default n
+	help
+		support Brazil country tone
+
+config CONFIG_CALLMGR_CTRY_CHILE
+	bool "Chile(CL)"
+	default n
+	help
+		support Chile country tone
+
+config CONFIG_CALLMGR_CTRY_CHINA
+	bool "China(CN)"
+	default n
+	help
+		support China country tone
+
+config CONFIG_CALLMGR_CTRY_CROATIA
+	bool "Croatia(HR)"
+	default n
+	help
+		support Croatia country tone
+
+config CONFIG_CALLMGR_CTRY_GREECE
+	bool "Greece(GR)"
+	default n
+	help
+		support Greece country tone
+
+config CONFIG_CALLMGR_CTRY_HUNGARY
+	bool "Hungary(HU)"
+	default n
+	help
+		support Hungary country tone
+
+config CONFIG_CALLMGR_CTRY_INDIA
+	bool "India(IN)"
+	default n
+	help
+		support India country tone
+
+config CONFIG_CALLMGR_CTRY_INDONESIA
+	bool "Indonesia(ID)"
+	default n
+	help
+		support Indonesia country tone
+		
+config CONFIG_CALLMGR_CTRY_ITALY
+	bool "Italy(IT)"
+	default n
+	help
+		support Italy country tone
+
+config CONFIG_CALLMGR_CTRY_JAPAN
+	bool "Japan(JP)"
+	default n
+	help
+		support Japan country tone
+
+config CONFIG_CALLMGR_CTRY_KOREA
+	bool "Korea(KR)"
+	default n
+	help
+		support Korea country tone
+
+config CONFIG_CALLMGR_CTRY_MEXICO
+	bool "Mexico(MX)"
+	default n
+	help
+		support Mexico country tone
+		
+config CONFIG_CALLMGR_CTRY_MOROCCO
+	bool "Morocco(MA)"
+	default n
+	help
+		support Morocco country tone
+	
+config CONFIG_CALLMGR_CTRY_PHILIPPINES
+	bool "Philippines(PH)"
+	default n
+	help
+		support Philippines country tone
+		
+config CONFIG_CALLMGR_CTRY_PORTUGAL
+	bool "Portugal(PT)"
+	default n
+	help
+		support Portugal country tone
+
+config CONFIG_CALLMGR_CTRY_RUSSIA
+	bool "Russia(RU)"
+	default n
+	help
+		support Russia country tone
+
+config CONFIG_CALLMGR_CTRY_SPAIN
+	bool "Spain(ES)"
+	default n
+	help
+		support Spain country tone
+
+config CONFIG_CALLMGR_CTRY_SRILANKA
+	bool "Sri LanKa(LK)"
+	default n
+	help
+		support Sri LanKa country tone
+		
+config CONFIG_CALLMGR_CTRY_TAIWAN
+	bool "Taiwan(TW)"
+	default n
+	help
+		support Taiwan country tone
+
+config CONFIG_CALLMGR_CTRY_THAILAND
+	bool "Thailand(TH)"
+	default n
+	help
+		support Thailand country tone
+
+config CONFIG_CALLMGR_CTRY_UNITED_KINGDOM
+	bool "United Kingdom(GB)"
+	default n
+	help
+		support United Kingdom country tone
+
+config CONFIG_CALLMGR_CTRY_UNITED_STATES
+	bool "United States(US)"
+	default n
+	help
+		support United States country tone
+
+config CONFIG_CALLMGR_CTRY_VENEZUELA
+	bool "Venezuela(VE)"
+	default n
+	help
+		support Venezuela country tone
+
+config CONFIG_CALLMGR_CTRY_VIETNAM
+	bool "Vietnam(VN)"
+	default n
+	help
+		support Vietnam country tone
+		
+endmenu
+
+config CONFIG_CALLMGR_CONSOLE_CMD
+	bool "Console command module"
+	default n
+	help
+		Call Manager console command module
+		
+config CONFIG_CALLMGR_VOICE_MAIL
+	bool "Voice mail module"
+	default n
+	help
+		Call Manager voice mail module
+		
+config CONFIG_CALLMGR_CALL_CTL
+	bool "Call control"
+	default n
+	help
+		Call Control
+
+config CONFIG_CALLMGR_CALL_MONITOR
+	bool "Call monitor"
+	default n
+	help
+		Call Monitor
+config CONFIG_CALLMGR_T38_FAX
+	bool "T38 FAX"
+	default n
+	help
+		T38 FAX
+
+endmenu

@@ -1,0 +1,4 @@
+# libnl
+
+gsubdir-$(ELBOX_PROGS_GPL_LIBNL_1_1)	+= libnl-1.1
+

@@ -1,0 +1,29 @@
+#
+# udev
+#
+config ELBOX_PROGS_GPL_USB_MODE_SWITCH
+	bool "usb_modeswitch"
+	default n
+	help
+		Select version of usb_modeswitch. Seattle should use thie option to
+		enable usb_modeswitch and select version.
+
+choice
+	prompt "Version Selection for usb_modeswitch"
+	depends ELBOX_PROGS_GPL_USB_MODE_SWITCH
+	default ELBOX_PROGS_GPL_USB_MODESWITCH
+	help
+		usb modeswitch can send message to usb modem + usb storage device
+		so the usb modem mode can be unlocked
+
+	config ELBOX_PROGS_GPL_USB_MODESWITCH
+		bool "usb_modeswitch 0.9.5"
+		help
+			usb_modeswitch 0.9.5
+
+	config ELBOX_PROGS_GPL_USB_MODESWITCH_1_0_2
+		bool "usb_modeswitch-1.0.2"
+		help
+			usb modeswitch can send message to usb modem + usb storage device
+			so the usb modem mode can be unlocked (supports more card)
+endchoice		

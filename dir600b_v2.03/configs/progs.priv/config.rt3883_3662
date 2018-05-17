@@ -1,0 +1,25 @@
+#
+# xmldb
+#
+
+config ELBOX_PROGS_PRIV_RALINK_RT3883_3662
+	bool "RALINK 3883 or 3662 wireless"
+	default n
+
+choice
+	prompt "Select version"
+	depends ELBOX_PROGS_PRIV_RALINK_RT3883_3662
+	default ELBOX_PROGS_PRIV_RALINK_RT3883_3662_v2_4_xx_20100212
+	help
+		Select the RALINK wireless driver version.
+
+	#
+	# Ralink wireless for EWC(RT2860)
+	#
+	config ELBOX_PROGS_PRIV_RALINK_RT3883_3662_v2_4_xx_20100212
+		bool "rt2860v2_wifi24_all_dpa_20100212.tar.bz2"
+		help
+			Ralink wireless driver for RT3662, version 2.4.x.x
+			
+endchoice
+

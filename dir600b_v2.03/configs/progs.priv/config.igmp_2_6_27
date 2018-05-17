@@ -1,0 +1,9 @@
+#
+# igmpproxy
+#
+
+config ELBOX_PROGS_PRIV_IGMP_2_6_27
+	bool "igmp snooping in linux kernwl 2.6.27"
+	default n
+	help
+		IGMP snooping demon , created by alpha

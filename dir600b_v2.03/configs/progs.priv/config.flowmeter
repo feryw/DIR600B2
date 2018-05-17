@@ -1,0 +1,9 @@
+#
+# Internet Usage Meter
+#
+config ELBOX_PROGS_PRIV_FLOWMETER
+	bool "Internet Usage Meter (For D-Link)"
+	default n
+	help
+		Internet Usage Meter for D-Link.
+

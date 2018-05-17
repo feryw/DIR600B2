@@ -1,0 +1,256 @@
+<?
+//+++alex   2009/12/08
+
+//1.protocol filetr比SPEC多了 ICMP 2.MAC 與url filter 需要多+ENTRY (SPEC缺漏)
+
+echo 	"<filter_config>";
+
+//=======================  mac filter ====================================================
+	$filter_sip_enable = get("x","/security/dos/enable");
+	$mac_filter_enable = get("x","/security/macfilter/enable");
+	$mac_filter_action = get("x","/security/macfilter/action");
+
+	echo	"<filter_sip_enable>".$filter_sip_enable."</filter_sip_enable>";
+
+	for("/security/macfilter/entry")
+	{
+
+		$mac_filter_rule_enable = get("x","enable");
+
+		//  determine the value of $mac_filter_type   (allow,deny,disable) 
+	
+		if($mac_filter_enable == "1" && $mac_filter_rule_enable == "1" )
+		{
+			$mac_index = $@;
+			$mac = get("x","mac");
+			$mac_schedule_id = get("x","schedule/id");
+			
+			if($mac_filter_action == "0")
+			{
+				$mac_filter_type = "deny";
+			}
+			else if($mac_filter_action == "1")
+			{
+				$mac_filter_type = "allow";
+			}
+			
+				
+			if($mac_schedule_id == "0")
+			{
+				$mac_schedule_name = "always";
+				
+			}
+			else 
+			{
+				$mac_schedule_path_cat = "/sys/schedule/entry:".$mac_schedule_id."/description";
+				$mac_schedule_name = get("x",$mac_schedule_path_cat);
+			}
+						
+		}
+		else    //mac filter disable
+		{
+			$mac_filter_type = "disable";
+			$mac = "";
+			$mac_index = "";
+			$mac_schedule_name = "";
+			$mac_schedule_id = "";
+		}
+
+		echo	"<mac_filter_".$@.">";
+			echo 	"<mac_filter_type>".$mac_filter_type."</mac_filter_type>";
+			echo 	"<name>".$mac_index."</name>";
+			echo 	"<mac>".$mac."</mac>";
+			echo 	"<schedule_name>".$mac_schedule_name."</schedule_name>";
+		echo	"</mac_filter_".$@.">";
+	} 
+//======================= end of  mac filter ===================================================
+
+//======================= protocol_filter ======================================================
+	for("/security/firewall/entry")
+	{
+		$pro_filter_enable = get("x","enable");
+		$pro_filter_action = get("x","action");
+		$pro_filter_index = $@;
+		$pro_schedule_id = get("x","schedule/id");
+		
+
+		//determine the $protocol_filter_type
+		if($pro_filter_enable == "1")
+		{
+			// determine the $protocol_filter_type  
+			
+			if($pro_filter_action == "1")
+			{
+				$protocol_filter_type = "allow";
+			}
+			else if ($pro_filter_action == "0")
+			{
+				$protocol_filter_type = "deny";
+			}
+			
+			// determine the local and remote ip range 
+			if(get("x","src/inf") == "1") // if src inf is LAN (local_ip),the dst inf must be WAN
+			{
+				if(get("x","src/endip")== "")   // do not inset the end ip
+				{
+					$local_ip_range = get("x","src/startip");
+				}
+				else
+				{
+					$local_ip_range = get("x","src/startip")."-".get("x","src/endip");
+				}
+				
+				if(get("x","dst/endip") == "")  // do not inset the end ip
+				{
+					$remote_ip_range = get("x","dst/startip");
+				}
+				else
+				{
+					$remote_ip_range = get("x","dst/startip")."-".get("x","dst/endip");
+				}
+				
+			}
+			else 						  // if src inf is WAN ,the dst inf must be LAN
+			{
+				if(get("x","src/endip")== "")  // do not inset the end ip
+				{
+					$local_ip_range = get("x","dst/startip");
+				}
+				else
+				{
+					$local_ip_range = get("x","dst/startip")."-".get("x","dst/endip");
+				}
+				
+				if(get("x","dst/endip")== "")  // do not inset the end ip
+				{
+					$remote_ip_range = get("x","src/startip");
+				}
+				else
+				{
+					$remote_ip_range = get("x","src/startip")."-".get("x","src/endip");
+				}
+			} // end of if(get("x","src/inf") == "1") 
+			
+			//determine the protocl type
+			if(get("x","protocol") == "1")
+			{
+				$protocol_type = "ALL";
+			}
+			else if(get("x","protocol") == "2")
+			{
+				$protocol_type = "TCP";
+			}
+			else if(get("x","protocol") == "3")
+			{
+				$protocol_type = "UDP";
+			}
+			else
+			{
+				$protocol_type = "ICMP";
+			} 
+			
+			//determine the port range
+			if(get("x","dst/endport") == "")
+			{
+				$port_range = get("x","dst/startport");
+			}
+			else
+			{
+				$port_range = get("x","dst/startport")."-".get("x","dst/endport");
+			}
+			
+			//determine the schedule name   
+			if($pro_schedule_id == "0")
+			{
+				$schedule_name = "always";	
+			}
+			else 
+			{
+				$pro_schedule_path_cat = "/sys/schedule/entry:".$pro_schedule_id."/description";
+				$schedule_name = get("x",$pro_schedule_path_cat);
+			}
+						
+		}
+		else  // disable the protocol filter
+		{
+			$protocol_filter_type = "disable";
+			$pro_filter_index = "";
+			$local_ip_range = "";
+			$remote_ip_range = "";
+			$protocol_type = "";
+			$port_range = "";
+			$schedule_name = "";
+			$pro_schedule_id = "";
+		}
+	
+		echo	"<protocol_filter_".$@.">";
+			echo	"<protocol_filter_type>".$protocol_filter_type."</protocol_filter_type>";
+			echo	"<name>".$pro_filter_index."</name>";
+			echo	"<local_ip_range>".$local_ip_range."</local_ip_range>";
+			echo	"<remote_ip_range>".$remote_ip_range."</remote_ip_range>";
+			echo	"<protocol_type>".$protocol_type."</protocol_type>";
+			echo	"<port_range>".$port_range."</port_range>";
+			echo	"<schedule_name>".$schedule_name."</schedule_name>";
+		echo	"</protocol_filter_".$@.">";
+	}
+//======================= end of protocol_filter ================================================
+
+//======================= url domain filter =====================================================
+	
+	$url_filter_enable = get("x","/security/urlblocking/enable");
+	$url_filter_action = get("x","/security/urlblocking/action");
+	
+	for("/security/urlblocking/entry")
+	{
+		$url_filter_rule_enable = get("x","enable");
+		
+		
+		if($url_filter_enable == "1" && $url_filter_rule_enable == "1")
+		{
+			$url_index = $@;
+			$url_string = get("x","url");
+			$url_schedule_id = get("x","schedule/id");
+			
+			if($url_filter_action == "1")
+			{
+				$url_filter_type = "allow";
+			}
+			else
+			{
+				$url_filter_type = "deny";
+			}
+			
+			if($url_schedule_id == "0")
+			{
+				$url_schedule_name = "always";
+			}
+			else 
+			{
+				$url_schedule_path_cat = "/sys/schedule/entry:".$url_schedule_id."/description";
+				$url_schedule_name = get("x",$url_schedule_path_cat);
+			}
+		
+		}
+		else  // url filter disable
+		{
+			$url_filter_type = "disable";
+		 	$url_index = "";
+		 	$url_string = "";
+		 	$url_schedule_name = "";
+		 	$url_schedule_id = "";
+		}
+			
+		echo	"<url_domain_filter_".$@.">";
+			echo 	"<filter_type>".$url_filter_type."</filter_type>";
+			echo 	"<name>".$url_index."</name>";
+			echo 	"<url_string>".$url_string."</url_string>";
+			echo 	"<schedule_name>".$url_schedule_name."</schedule_name>";
+		echo	"</url_domain_filter_".$@.">";
+	
+	} 
+//======================= end of url domain filter =============================================
+
+echo "</filter_config>";
+
+//---alex
+?>

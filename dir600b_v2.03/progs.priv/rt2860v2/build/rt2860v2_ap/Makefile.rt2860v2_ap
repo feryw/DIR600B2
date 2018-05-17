@@ -1,0 +1,20 @@
+-include ../../../../path.mk
+-include ../../../arch.mk
+
+O_TARGET = rt2860v2_ap.ko
+
+all:
+	$(Q)make -C $(KERNELDIR) M=`pwd` modules V=1
+
+clean:
+	$(Q)find $(PWD)/../ \( -name '*.o' -o -name '*.cmd' -o -name '*.symvers' -o -name '*.mod.c' -o -name '*.ko' -o -name '.tmp_versions' -o -name '*.o.d' \) | xargs rm -rf
+	$(Q)rm -f RT3052_AP_2T2R_V1_1.bin
+
+install:
+	$(Q)[ -d $(TARGET)/lib/modules ] || mkdir -p $(TARGET)/lib/modules
+	$(Q)[ -d $(TARGET)/etc ] || mkdir -p $(TARGET)/etc
+	$(Q)$(STRIP) --strip-debug $(O_TARGET) 
+	$(Q)cp $(O_TARGET)      $(TARGET)/lib/modules
+	$(Q)cp RT3052_AP_2T2R_V1_1.bin $(TARGET)/etc
+
+.PHONY: all install clean

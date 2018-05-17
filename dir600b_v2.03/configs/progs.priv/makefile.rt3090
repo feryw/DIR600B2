@@ -1,0 +1,3 @@
+# rt3090
+
+psubdir-$(ELBOX_PROGS_PRIV_RALINK_RT3090)			+= rt3090

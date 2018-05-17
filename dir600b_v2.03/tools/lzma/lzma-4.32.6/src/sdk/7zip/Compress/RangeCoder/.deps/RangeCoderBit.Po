@@ -1,0 +1,60 @@
+RangeCoderBit.o RangeCoderBit.o: RangeCoderBit.cpp StdAfx.h \
+  RangeCoderBit.h RangeCoder.h ../../Common/InBuffer.h \
+  ../../Common/../IStream.h ../../Common/../../Common/MyUnknown.h \
+  ../../Common/../../Common/MyWindows.h ../../../../../config.h \
+  /usr/lib/gcc/i386-redhat-linux/4.1.2/include/stddef.h \
+  /usr/include/string.h /usr/include/features.h /usr/include/sys/cdefs.h \
+  /usr/include/bits/wordsize.h /usr/include/gnu/stubs.h \
+  /usr/include/gnu/stubs-32.h /usr/include/xlocale.h \
+  ../../Common/../../Common/MyGuidDef.h ../../Common/../../Common/Types.h \
+  /usr/include/inttypes.h /usr/include/stdint.h /usr/include/bits/wchar.h \
+  ../../Common/../../Common/Types.h ../../Common/../../Common/MyCom.h \
+  ../../Common/OutBuffer.h
+
+StdAfx.h:
+
+RangeCoderBit.h:
+
+RangeCoder.h:
+
+../../Common/InBuffer.h:
+
+../../Common/../IStream.h:
+
+../../Common/../../Common/MyUnknown.h:
+
+../../Common/../../Common/MyWindows.h:
+
+../../../../../config.h:
+
+/usr/lib/gcc/i386-redhat-linux/4.1.2/include/stddef.h:
+
+/usr/include/string.h:
+
+/usr/include/features.h:
+
+/usr/include/sys/cdefs.h:
+
+/usr/include/bits/wordsize.h:
+
+/usr/include/gnu/stubs.h:
+
+/usr/include/gnu/stubs-32.h:
+
+/usr/include/xlocale.h:
+
+../../Common/../../Common/MyGuidDef.h:
+
+../../Common/../../Common/Types.h:
+
+/usr/include/inttypes.h:
+
+/usr/include/stdint.h:
+
+/usr/include/bits/wchar.h:
+
+../../Common/../../Common/Types.h:
+
+../../Common/../../Common/MyCom.h:
+
+../../Common/OutBuffer.h:

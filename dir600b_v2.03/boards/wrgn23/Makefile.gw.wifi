@@ -1,0 +1,43 @@
+#
+# Makefile for WRG-N23 of gw.wifi
+#
+
+MYNAME	:= "WRGN23/gw.wifi"
+MYMAKE	:= make V=$(V) DEBUG=$(DEBUG)
+APPS	:= ated fresetd rt3052esw ubcfg
+
+# setup board dependent program configuration
+prepare:
+	@echo -e "\033[32mPreparing configuration for $(MYNAME) ...\033[0m"
+
+# build board dependent programs
+apps:
+	@echo -e "\033[32mBuilding applets for $(MYNAME) ...\033[0m"
+	$(Q)$(MYMAKE) -C template.gw.wifi
+
+# build board dependent rootfs
+rootfs:
+	@echo -e "\033[32mCreate rootfs for $(MYNAME) ...\033[0m"
+	$(Q)[ -d $(TARGET)/etc/config ] || mkdir -p $(TARGET)/etc/config
+	$(Q)[ -d $(TARGET)/usr/bin ] || mkdir -p $(TARGET)/usr/bin
+	$(Q)[ -d $(TARGET)/usr/sbin ] || mkdir -p $(TARGET)/usr/sbin
+	$(Q)$(MYMAKE) -C template.gw.wifi rootfs
+
+# install board dependent programs
+install:
+	@echo -e "\033[32mInstalling applets for $(MYNAME) ...\033[0m"
+ifeq ($(strip $(ELBOX_PROGS_PRIV_APX)),y)
+	$(Q)cp apps/appex.o  $(TARGET)/lib/modules/
+endif
+	$(Q)cp apps/mfc $(TARGET)/usr/sbin/mfc
+	$(Q)for i in $(APPS); do $(MYMAKE) -C apps/$$i install; done
+	$(Q)$(MYMAKE) -C template.gw.wifi install
+
+# clean board dependent programs
+clean:
+	@echo -e "\033[32mCleaning applets for $(MYNAME) ...\033[0m"
+	$(Q)$(MYMAKE) -C template.gw.wifi clean
+
+.PHONY: apps install clean prepare rootfs
+
+#####################################################################

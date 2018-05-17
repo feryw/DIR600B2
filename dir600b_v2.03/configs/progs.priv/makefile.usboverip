@@ -1,0 +1,4 @@
+# USB over IP
+
+psubdir-$(ELBOX_PROGS_PRIV_USBOVERIP_SILEX)				+= sxuptp
+#psubdir-$(ELBOX_PROGS_PRIV_USBOVERIP_KCODE)				+= kcode

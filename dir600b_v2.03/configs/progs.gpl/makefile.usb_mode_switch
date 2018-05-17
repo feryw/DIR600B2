@@ -1,0 +1,4 @@
+# usb_modeswitch
+
+gsubdir-$(ELBOX_PROGS_GPL_USB_MODE_SWITCH_0_9_5)	+= usb_modeswitch-0.9.5
+gsubdir-$(ELBOX_PROGS_GPL_USB_MODE_SWITCH_1_0_2) += usb_modeswitch-1.0.2

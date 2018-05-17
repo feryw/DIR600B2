@@ -1,0 +1,81 @@
+#
+# wlxmlpatchv2
+#
+
+config ELBOX_UPDATEWIFISTATS
+	bool "Update Wifi stats"
+	default n
+	help
+		In Project Seattle, we use it to instead of wlxmlpatchv2.
+		The daemon updates the runtime info and stats of wireless.
+
+choice
+	prompt "Select vendor"
+	depends ELBOX_UPDATEWIFISTATS
+	help
+		Select the vendor of wireless.
+
+	#
+	# Ralink
+	#
+	config ELBOX_PROGS_PRIV_UPDATEWIFISTATS_RALINK
+		bool "Ralink"
+
+	#
+	# Atheros
+	#
+	config ELBOX_PROGS_PRIV_UPDATEWIFISTATS_ATHEROS
+		bool "Atheros"
+
+	#
+	# Broadcom
+	#
+	config ELBOX_PROGS_PRIV_UPDATEWIFISTATS_BROADCOM
+		bool "Broadcom"
+
+	#
+	# others
+	#
+
+endchoice
+
+
+# ralink model 
+menu "Ralink model selection"
+	depends ELBOX_UPDATEWIFISTATS
+	depends ELBOX_PROGS_PRIV_UPDATEWIFISTATS_RALINK
+
+	config ELBOX_PROGS_PRIV_UPDATEWIFISTATS_RALINK_RT2800
+		bool "RT2800"
+
+choice
+	prompt "Driver Version"
+	depends ELBOX_PROGS_PRIV_UPDATEWIFISTATS_RALINK_RT2800
+	default ELBOX_PROGS_PRIV_UPDATEWIFISTATS_RALINK_DEFAULT
+	config ELBOX_PROGS_PRIV_UPDATEWIFISTATS_RALINK_DEFAULT
+		bool "Default, please read help first."
+		help
+			It works with SDK3.1.0.0 v1.9.0.0. Other version needs to verify.
+			Before select it, please check if the structs in rtxxxx.h are same 
+			with the ones in the driver you use.
+
+	config ELBOX_PROGS_PRIV_UPDATEWIFISTATS_RALINK_SDK3300_V2XXX
+		bool "SDK3.3.0.0 v2.x.x.x"
+		help
+			SDK3.3.0.0 v2.x.x.x which is newer than v2.4.0.0,
+			and Ralink doesn't define it yet.
+			Ralink use v2.x.x.x, so we follow the definition, too.
+endchoice
+endmenu
+
+# atheros mdoel
+menu "Atheros model selection"
+	depends ELBOX_UPDATEWIFISTATS
+	depends ELBOX_PROGS_PRIV_UPDATEWIFISTATS_ATHEROS
+	config ELBOX_PROGS_PRIV_UPDATEWIFISTATS_ATHEROS_AT7240
+		bool "AT7240"
+
+endmenu
+
+# broadcom model
+

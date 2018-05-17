@@ -1,0 +1,3 @@
+# llmnresp 
+
+psubdir-$(ELBOX_PROGS_PRIV_LLMNRESP)	+= llmnresp

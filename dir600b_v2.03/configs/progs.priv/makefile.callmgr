@@ -1,0 +1,32 @@
+# callmgr
+
+psubdir-$(ELBOX_PROGS_PRIV_CALLMGR)	+= callmgr
+
+# callmgr sub directories
+
+csubdir-y += library/comlib
+csubdir-$(CONFIG_CALLMGR_SYSTEM_LIB) += library/callmgr_lib
+csubdir-$(CONFIG_CALLMGR_TIMER_LIB) += library/timer_lib
+csubdir-$(CONFIG_CALLMGR_CALL_CTL) += call_control
+csubdir-$(CONFIG_CALLMGR_CALL_MONITOR) += call_monitor
+#csubdir-$(CONFIG_CALLMGR_EPT_PLATFORM_PC) += endpoint/linux_pc
+#csubdir-$(CONFIG_CALLMGR_EPT_PLATFORM_VMMC) += endpoint/vmmc
+csubdir-y += endpoint
+csubdir-$(CONFIG_CALLMGR_DSP_PC) += dsp/linux_pc
+csubdir-$(CONFIG_CALLMGR_DSP_VMMC) += dsp/vmmc
+csubdir-$(CONFIG_CALLMGR_DSP_DSPLESS) += dsp/dspless
+csubdir-$(CONFIG_CALLMGR_CONSOLE_CMD) += console_cmd
+csubdir-$(CONFIG_CALLMGR_VOICE_MAIL) += voice_mail
+csubdir-$(CONFIG_CALLMGR_T38_FAX)	+= t38
+
+# callmgr endpoint type sub directories
+esubdir-$(CONFIG_CALLMGR_EPT_TYPE_FXS) += ept_fxs
+esubdir-$(CONFIG_CALLMGR_EPT_TYPE_FXO) += ept_fxo
+esubdir-$(CONFIG_CALLMGR_EPT_TYPE_SIP) += ept_sip
+esubdir-$(CONFIG_CALLMGR_EPT_TYPE_IVR) += ept_ivr
+esubdir-$(CONFIG_CALLMGR_EPT_TYPE_ISDN) += ept_isdn
+esubdir-$(CONFIG_CALLMGR_EPT_TYPE_DECT) += ept_dect
+esubdir-$(CONFIG_CALLMGR_EPT_TYPE_MOBILE) += ept_mobile
+
+PROGS_PRIV_CALLMGR_SUBDIRS=$(csubdir-y)
+PROGS_PRIV_CALLMGR_EPT_SUBDIRS=$(esubdir-y)

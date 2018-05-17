@@ -1,0 +1,40 @@
+config RT2860V2_STA
+	tristate "Ralink RT2860 802.11n STA support - 2860v2, support both RBUS and PCI"
+	depends on NET_RADIO
+
+choice
+	prompt "Bus Type"
+	depends on RT2860V2_STA
+	default RT2860V2_STA_RBUS
+
+	config  RT2860V2_STA_RBUS
+	bool "RBUS"
+
+	config  RT2860V2_STA_RBUS_PCI
+	bool "RBUS+PCI"
+	depends on PCI
+endchoice
+
+config  RT2860V2_STA_2850
+	bool "Dual Bnad"
+	depends on RT2860V2_STA
+
+config  RT2860V2_STA_LED
+	bool "LED Support"
+	depends on RT2860V2_STA
+
+config  RT2860V2_STA_WPA_SUPPLICANT
+	bool "WPA Supplicant"
+	depends on RT2860V2_STA
+
+config  RT2860V2_STA_WSC
+	bool "WSC (WiFi Simple Config)"
+	depends on RT2860V2_STA
+
+#config  RT2860V2_STA_DPB
+#	bool "DPB Support"
+#	depends on RT2860V2_STA
+
+config  CONFIG_RT2860V2_STA_CARRIER
+	bool "Carrier Sense Support"
+	depends on RT2860V2_STA

@@ -1,0 +1,22 @@
+#
+# xmldb
+#
+
+config ELBOX_PROGS_PRIV_RALINK_RT3090
+	bool "RALINK RT3090 wireless"
+	default n
+
+choice
+	prompt "Select version"
+	depends ELBOX_PROGS_PRIV_RALINK_RT3090
+	default ELBOX_PROGS_PRIV_RALINK_RT3090_20100212
+	help
+		Select the RALINK wireless driver version.
+
+	config ELBOX_PROGS_PRIV_RALINK_RT3090_20100212
+		bool "rt3090ap_wifi24_all_dpa_20100212.tar.bz2"
+		help
+			Ralink wireless driver for RT3090, version 2.4.x.x
+			
+endchoice
+

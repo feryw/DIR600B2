@@ -1,0 +1,9 @@
+config ELBOX_PROGS_PRIV_MADWIFI_AR724X
+	bool "MADWIFI_AR724X"
+	default n
+	help
+		AP99 Wireless module.
+
+source configs/progs.priv/config.enhanced_wireless_ar7240
+
+

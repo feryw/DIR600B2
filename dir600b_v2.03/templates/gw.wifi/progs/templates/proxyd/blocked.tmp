@@ -1,0 +1,9 @@
+HTTP/1.0 302 Found
+Server:<?query("/lan/ethernet/ip");
+?> 
+Content-Type: text/html
+Accept-Ranges: bytes
+Location: http://<?query("/lan/ethernet/ip");
+?>/url_blocking_info.php
+
+

@@ -1,0 +1,2 @@
+# rtstad
+psubdir-$(ELBOX_PROGS_PRIV_RTSTAD)		+= rtstad

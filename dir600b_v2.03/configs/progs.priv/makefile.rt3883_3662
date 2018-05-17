@@ -1,0 +1,3 @@
+# rt2561
+
+psubdir-$(ELBOX_PROGS_PRIV_RALINK_RT3883_3662)			+= rt3883_3662

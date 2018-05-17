@@ -1,0 +1,17 @@
+<?
+//no schedule tag in the rgdb  
+
+//+++alex     
+
+	$dmz_enable= get("x","/nat/dmzsrv/enable");
+	$dmz_ip= get("x","/nat/dmzsrv/ip");
+//	$dmz_schedule 
+	
+echo	"<dmz>";    
+	echo	"<dmz_enable>".$dmz_enable."</dmz_enable>";
+	echo	"<dmz_ip>".$dmz_ip."</dmz_ip>";	
+	echo	"<dmz_schedule>".$dmz_schedule."</dmz_schedule>";	
+echo	"</dmz>";
+
+//---alex
+?>

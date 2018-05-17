@@ -1,0 +1,3 @@
+# igmpsnooping
+
+psubdir-$(ELBOX_PROGS_PRIV_IGMP_2_6_27)	+= igmp_2_6_27

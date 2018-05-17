@@ -1,0 +1,112 @@
+#
+# Enhanced Wireless Feature
+#
+
+## ASSOC_LIMIT Dennis
+# Conditional_Compiler_Flag_20080103 Dennis
+menu "Enhanced Wireless Feature Configuration"
+			
+        depends ELBOX_PROGS_PRIV_MADWIFI_AR724X
+
+        config ELBOX_PROGS_PRIV_WLAN_ASSOC_LIMIT
+                bool "Association Limitation"
+                default n
+                help
+                        This feature can limit the maximum number that STA can associate.
+						
+        config ELBOX_PROGS_PRIV_WLAN_ALPHA_WDS
+                bool "ALPHA Wireless Distrbution System  (Alpha-WDS)"
+                default n
+                help
+                        This feature can include the ALPHA Wireless Distrbution System .
+        
+        config ELBOX_PROGS_PRIV_WLAN_MULTI_SSID
+                bool "MULTI SSID System"
+                default n
+                help
+                        This feature can include the MULTI SSID System .
+		config ELBOX_PROGS_PRIV_WLAN_W_PRATITION
+				bool "WLAN_WIRELESS_PARTITION"
+				default n
+				help
+						This feature can include the Wlan Wireless Partition System .
+		config ELBOX_PROGS_PRIV_WLAN_ROGUE_AP
+				bool "Rouge AP "
+				default n
+				help
+						This feature can indicate which ap was rogue ap .
+		config ELBOX_PROGS_PRIV_WLAN_AP_BAND
+				bool "AP BAND "
+				default n
+				help
+						This feature will show AP in 2.4G or 5G band .
+
+		config ELBOX_PROGS_PRIV_WLAN_TXPOWER
+				bool "AP TXPOWER "
+				default n
+				help
+					This feature will change ap's txpower .
+	 #	config ELBOX_PROGS_PRIV_WLAN_SITE_SURVEY
+	#			bool "Wlan Site Survey"
+	#			default n
+	#			help
+	#				This feature can include the Wlan Site Survey .
+					
+		config ELBOX_PROGS_PRIV_WLAN_EXTOFFSET
+				bool "Wlan Channel Extoffset"
+				default n
+				help
+					This feature can change extoffset .
+		
+        config ELBOX_PROGS_PRIV_WLAN_MULTI_VLAN_NAP
+                bool "NAP (Network Access Protection) in wireless"
+                default n
+                help
+                        This feature can enable NAP function in wireless.
+                        
+		config ELBOX_PROGS_PRIV_WLAN_FIXEDRATE
+				bool "Wlan Fixed Rate"
+				default n
+				help
+					This feature can change WLAN Tx Rate .
+		
+		config ELBOX_PROGS_PRIV_WLAN_MULTI_SSID_Priority
+                		bool "MULTI SSID Priority"
+                		default n
+                		help
+                        		This feature can include the MULTI SSID Priority .		
+		config ELBOX_PROGS_PRIV_SERVD_FOR_SSID
+                		bool "SCHEDULE FOR SSID"
+                		default n
+                		help
+                        		This feature can include the SCHEDULE FOR SSID .		
+
+		config ELBOX_PROGS_PRIV_DISABLE_WIRELESS_5G
+                		bool "DISABLE WIRELESS 5G "
+                		default n
+                		help
+                        		This feature can include the Disable wireless 5G .		
+		config ELBOX_PROGS_PRIV_WLAN_MCAST_RATE
+                		bool "MCAST RATE "
+                		default n
+                		help
+                        		This feature can include the MULTICAST RATE .
+		config ELBOX_PROGS_PRIV_WLAN_ZONE_DEFENCE
+                         bool "ZONE DEFENCE "
+                         default n
+                         help
+                                 This feature can enable zone defence function .
+		config ELBOX_PROGS_PRIV_WLAN_CLINET_BYTES_COUNTER
+                          bool "Client bytes counter "
+                          default n
+                          help
+                               This feature was counted client's tx and rx bytes.
+		config ELBOX_PROGS_PRIV_WLAN_TXPOWER_75_PERCENTAGE
+				bool "Txpower 75% "
+				default n
+				help
+					This feature was enable txpower 75% item.
+
+
+endmenu
+

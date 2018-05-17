@@ -1,0 +1,16 @@
+#
+#  ecmh
+#
+
+config ELBOX_PROGS_GPL_ECMH
+	bool "ecmh - Easy Cast du Multi Hub"
+	default n
+	help
+		Easy Cast du Multi Hub (ecmh) is a networking daemon that acts
+		as a full IPv6 MLDv1 and MLDv2 Multicast "Router". This allows
+		IPv6 multicast routing on Linux and soon other OS's that do not
+		implement IPv6 multicast routing. It will also allow IPv4 to IPv6
+		and IPv6 to IPv4 translation of multicast traffic.
+		Allowing multicast where it is not available at the moment. 
+		http://unfix.org/projects/ecmh/
+

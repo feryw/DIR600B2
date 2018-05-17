@@ -1,0 +1,3 @@
+# Star speed
+
+psubdir-$(ELBOX_PROGS_PRIV_STARSPEED)	+= starspeed

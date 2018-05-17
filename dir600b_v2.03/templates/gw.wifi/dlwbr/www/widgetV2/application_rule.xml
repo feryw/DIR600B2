@@ -1,0 +1,61 @@
+<?
+//+++alex  2009/12/07
+
+ 
+for("/nat/porttrigger/entry")
+{
+
+	if(get("x","enable") == "1")
+	{
+		$trigger_ports = get("x","trigger/startport");
+		$public_ports = get("x","external/portlist");
+	
+		//assign string(tcp udp any) into trigger_protocol 
+		if(get("x","trigger/protocol") ==  "1")   
+		{
+			$trigger_protocol = "TCP";
+		}
+		else if(get("x","trigger/protocol") ==  "2")
+		{
+			$trigger_protocol = "UDP";
+		}
+		else
+		{
+			$trigger_protocol = "ANY";
+		}
+		
+		//assign string (tcp udp any) into public_protocol
+		if(get("x","external/protocol") == "1")
+		{
+			$public_protocol = "TCP";
+		}
+		else if(get("x","external/protocol") == "2")
+		{
+			$public_protocol = "UDP";
+		}
+		else
+		{
+			$public_protocol = "ANY";
+		}
+	}
+	else
+	{
+	    $trigger_protocol = "";
+	    $trigger_ports = "";
+	    $public_protocol = "";
+	    $public_ports = "";	
+	}
+
+	echo	"<application_entry_".$@.">";
+		echo	"<enable>".get("x","enable")."</enable>";
+		echo	"<name>".get("x","description")."</name>";
+		echo	"<trigger_protocol>".$trigger_protocol."</trigger_protocol>";
+		echo	"<trigger_ports>".$trigger_ports."</trigger_ports>";
+		echo	"<public_protocol>".$public_protocol."</public_protocol>";
+		echo	"<public_ports>".$public_ports."</public_ports>";
+		echo	"<schedule_name></schedule_name>";
+	echo	"</application_entry_".$@.">";
+}
+
+//---alex
+?>

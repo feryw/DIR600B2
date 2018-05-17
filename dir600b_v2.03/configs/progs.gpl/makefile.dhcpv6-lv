@@ -1,0 +1,4 @@
+# dhcpv6 linux version
+
+gsubdir-$(ELBOX_PROGS_GPL_DHCPV6_LINUX)	+= dhcpv6-1.2.0
+

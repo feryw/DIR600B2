@@ -1,0 +1,39 @@
+<?
+//+++alex     2009/12/08 
+echo	"<static_route>";
+
+	for("/routing/route/entry")
+	{
+		$enable = get("x","enable");
+		if($enable == "1")
+		{
+			$name = $@;
+			$dest_addr = get("x","destination");
+			$dest_mask = get("x","netmask");
+			$gateway =  get("x","gateway");
+			$interface = get("x","interface");
+		}
+		else
+		{
+			$name = "";
+			$dest_addr = "";
+			$dest_mask = "";
+			$gateway = "";
+			$interface = "";
+		}
+
+		echo	"<static_routing_".$@.">";
+			echo	"<enable>".get("x","enable")."</enable>";
+			echo	"<name>".$name."</name>";
+			echo	"<dest_addr>".$dest_addr."</dest_addr>";
+			echo	"<dest_mask>".$dest_mask."</dest_mask>";
+			echo	"<gateway>".$gateway."</gateway>";
+			echo	"<interface>".$interface."</interface>";
+			echo	"<metric></metric>";		// no metric node in rgdb
+		echo	"</static_routing_".$@.">";
+	
+	}
+	
+echo	"</static_route>";	
+//---alex
+?>

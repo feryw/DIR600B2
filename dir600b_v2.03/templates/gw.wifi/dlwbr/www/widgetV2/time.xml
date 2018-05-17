@@ -1,0 +1,40 @@
+<?
+/* alex
+1. timezone -12~+13 有些區域會超過 
+2.time的格式不符，沒有strtok函式可CALL
+*/
+
+//+++alex     
+
+	$time_daylight_saving_enable = get("x","/time/daylightsaving");
+	
+	
+
+
+	//$ntp_enable =         
+	$ntp_sync_interval = get("x","/time/ntpserver/interval")/3600;
+	$ntp_server = get("x","/time/ntpserver/ip");
+
+
+	echo	"<time>";
+		echo	"<time_zone_index>".get("x","/time/timezone")."</time_zone_index>";
+		echo	"<time_daylight_saving>";
+			echo	"<enable>".$time_daylight_saving_enable ."</enable>";
+			echo	"<start_month>".$start_month."</start_month>";
+			echo	"<start_week>".$start_week."</start_week>";
+			echo	"<start_day_of_week>".$start_day_of_week."</start_day_of_week>";
+			echo	"<start_time>".$start_time."</start_time>";
+			echo	"<end_month>".$end_month."</end_month>";
+			echo	"<end_week>".$end_week."</end_week>";
+			echo	"<end_day_of_week>".$end_day_of_week."</end_day_of_week>";
+			echo	"<end_time>".$end_time."</end_time>";
+		echo	"</time_daylight_saving>";
+		echo	"<ntp>";	
+			echo	"<enable>".$ntp_enable."</enable>";       // need to check 
+			echo	"<sync_interval>".$ntp_sync_interval."</sync_interval>";
+			echo	"<server>".$ntp_server."</server>";
+		echo	"</ntp>";				
+	echo	"</time>";
+
+//---alex
+?>

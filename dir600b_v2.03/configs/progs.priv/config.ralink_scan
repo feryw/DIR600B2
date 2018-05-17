@@ -1,0 +1,7 @@
+#
+#ralink_repeater
+#
+
+config ELBOX_PROGS_PRIV_RALINK_SCAN
+	bool "Ralink Scan function."
+	default n

@@ -1,0 +1,10 @@
+#
+# rtstad
+#
+
+config ELBOX_PROGS_PRIV_RTSTAD
+	bool "rtstad"
+	default n
+	help
+		Ralink Station Daemon. This daemon listen to the IWEVREGISTERED & IWEVEXPIRED
+		events to add/remove client information. This is a replacement of the old polling method.

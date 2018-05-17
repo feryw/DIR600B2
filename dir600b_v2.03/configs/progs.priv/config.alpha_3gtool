@@ -1,0 +1,7 @@
+#
+#alpha_3gtool
+#
+
+config ELBOX_PROGS_PRIV_ALPHA_3GTOOL
+	bool "Alpha 3G tool which helps to switch mode of 3G USB device."
+	default n

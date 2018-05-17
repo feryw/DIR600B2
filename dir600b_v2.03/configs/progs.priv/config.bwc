@@ -1,0 +1,10 @@
+#
+# BWC: bandwidth control
+#
+config ELBOX_PROGS_PRIV_BWC
+	bool "BWC: Bandwidth control"
+	default n
+	help
+		bandwidth control, it should be depends on "ELBOX_PROGS_PRIV_TURBONAT_QOS"
+		and "ELBOX_PROGS_PRIV_TURBONAT_UBCOM" both are not selected.
+

@@ -1,0 +1,16 @@
+#
+# dhcpv6 linux version
+#
+
+config ELBOX_PROGS_GPL_DHCPV6_LINUX
+	bool "DHCPv6 (linux version) client/server/relay for automatic IPv6 hosts configuration"
+	depends on ELBOX_USE_IPV6
+	default n
+	select ELBOX_LIBNL
+	help
+		DHCPv6 is a stateful address autoconfiguration protocol for IPv6, a counterpart
+		to IPv6 stateless address autoconfiguration protocol. It can either be used 
+		independently or it can coexist with its counterpart protocol. This protocol 
+		uses client/server mode of operation but can also provide support through a Relay Agent.
+
+

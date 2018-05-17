@@ -1,0 +1,82 @@
+#
+# busybox
+#
+
+config ELBOX_BUSYBOX
+	bool "Busybox"
+	default y
+
+choice
+	prompt "Selection version"
+	depends ELBOX_BUSYBOX
+	default ELBOX_PROGS_GPL_BUSYBOX_1_00
+	help
+		Select BUSYBOX.
+
+	config ELBOX_PROGS_GPL_BUSYBOX_1_00
+		bool "busybox-1.00"
+		help
+			Busybox 1.00
+
+	config ELBOX_PROGS_GPL_BUSYBOX_1_11_1
+		bool "busybox-1.11.1"
+		help
+			Busybox 1.11.1
+
+	config ELBOX_PROGS_GPL_BUSYBOX_1_14_1
+		bool "busybox-1.14.1"
+		help
+			Busybox 1.14.1
+
+endchoice
+
+config ELBOX_PROGS_GPL_BUSYBOX_1_00_ADVANCED_CONFIG
+	bool "Use Busybox 1.00 advanced config file "
+	default n
+	depends ELBOX_PROGS_GPL_BUSYBOX_1_00
+	help
+		Advanced config use more additional functions/programs. hendry add at 2008/08/28.
+
+config ELBOX_PROGS_GPL_TFTP_FTP_GET_PUT_FW_CONFIG
+	bool "ftp/tftp get/put F/W and config"
+	default n
+	depends ELBOX_PROGS_GPL_BUSYBOX_1_00
+	help
+		Select ftp/tftp/get/put in Busybox 1.00. This is mostly used by AP product.
+config ELBOX_PROGS_GPL_TFTP_FTP_GET_PUT_FW_CONFIG
+	bool "ftp/tftp get/put F/W and config"
+	default n
+	depends ELBOX_PROGS_GPL_BUSYBOX_1_11_1
+	help
+		Select ftp/tftp/get/put in Busybox 1.11.1. This is mostly used by AP product.
+
+config ELBOX_PROGS_GPL_TFTP_FTP_GET_PUT_FW_CONFIG
+	bool "ftp/tftp get/put F/W and config"
+	default n
+	depends ELBOX_PROGS_GPL_BUSYBOX_1_14_1
+	help
+		Select ftp/tftp/get/put in Busybox 1.14.1. This is mostly used by AP product.
+
+config ELBOX_BUSYBOX_DYNAMIC_LINKING
+	depends ELBOX_BUSYBOX
+	bool "Build busybox with dynamic linking"
+	default n
+	help
+		Some toolchain provided by chip vendor does not support static busybox friendly.
+		So this option can make busybox with dynamic linking.
+
+config ELBOX_BUSYBOX_HAVE_MDEV
+	depends ELBOX_BUSYBOX
+	bool "Use mdev"
+	default n
+	help
+		mdev is a mini-udev implementation for dynamically creating device nodes in the /dev directory.
+		Busybox 1.00 does not support mdev, so this option has no meaning in 1.00.
+
+config ELBOX_BUSYBOX_USE_FANCY_PING
+	depends ELBOX_BUSYBOX
+	bool "Enable feature fancy ping"
+	default n
+	help
+		This option will enable the fancy ping feature in busybox by setting CONFIG_FEATURE_FANCY_PING=y.
+

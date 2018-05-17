@@ -1,0 +1,9 @@
+#
+# igmpproxy
+#
+
+config ELBOX_PROGS_PRIV_WFI_INV
+	bool "wifi invite"
+	default n
+	help
+		Broadcom Wifi invited application

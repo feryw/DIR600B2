@@ -1,0 +1,29 @@
+#
+# libnl
+#
+
+config ELBOX_LIBNL
+	bool "libnl"
+	default n
+	help
+		library for dealing with netlink sockets.
+
+choice
+	prompt "Selection Version"
+	depends ELBOX_LIBNL
+	default ELBOX_PROGS_GPL_LIBNL_1_1
+	help
+		Select the libnl version for the platform
+
+config ELBOX_PROGS_GPL_LIBNL_1_1
+	bool "libnl 1.1"
+	help
+		This is a library for applications dealing with netlink sockets. The library 
+		provides an interface for raw netlink messaging and various netlink 
+		family specific interfaces.
+
+endchoice
+
+config ELBOX_LIBNL_DONT_INSTALL
+	bool
+
