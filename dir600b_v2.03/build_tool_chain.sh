@@ -11,7 +11,6 @@ if [ ! -d buildroot ]; then
 	mv buildroot/uClibc-0.9.28 buildroot/toolchain_build_mipsel/uClibc-0.9.28
 	make -C buildroot/toolchain_build_mipsel/uClibc-0.9.28 oldconfig
 	make -C buildroot/toolchain_build_mipsel/uClibc-0.9.28
-
 fi
 
 TOPDIR=`pwd`
