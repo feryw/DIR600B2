@@ -7,8 +7,7 @@ if [ ! -d buildroot ]; then
 	make -C buildroot oldconfig
 	make -C buildroot
 
-	cp buildroot/toolchain_build_mipsel/uClibc-0.9.28/.config buildroot/uClibc-0.9.28/	
-	rm -rf buildroot/toolchain_build_mipsel/uClibc-0.9.28
+	mkdir buildroot/toolchain_build_mipsel
 	mv buildroot/uClibc-0.9.28 buildroot/toolchain_build_mipsel/uClibc-0.9.28
 	make -C buildroot/toolchain_build_mipsel/uClibc-0.9.28 oldconfig
 	make -C buildroot/toolchain_build_mipsel/uClibc-0.9.28
